@@ -85,7 +85,6 @@ Actor.destroy_all
 
 # Insert data into the database that reflects the sample data shown above.
 # Do not use hard-coded foreign key IDs.
-# Insert data into the database
 studios = [
   { name: "Warner Bros." }
 ]
@@ -152,7 +151,11 @@ puts "======"
 puts ""
 
 # Query the movies data and loop through the results to display the movies output.
-# TODO!
+movies = Movie.all
+movies.each do |movie|
+  studio = Studio.find(movie.studio_id)
+  puts "#{movie.title.ljust(25)} #{movie.year.to_s.rjust(4)} #{movie.rating.ljust(5)} #{studio.name}"
+end
 
 # Prints a header for the cast output
 puts ""
