@@ -85,7 +85,66 @@ Actor.destroy_all
 
 # Insert data into the database that reflects the sample data shown above.
 # Do not use hard-coded foreign key IDs.
-# TODO!
+# Insert data into the database
+studios = [
+  { name: "Warner Bros." }
+]
+
+studios.each do |studio|
+  Studio.create!(studio)
+end
+
+warner_bros = Studio.find_by(name: "Warner Bros.")
+
+movies = [
+  { title: "Batman Begins", year: 2005, rating: "PG-13", studio: warner_bros },
+  { title: "The Dark Knight", year: 2008, rating: "PG-13", studio: warner_bros },
+  { title: "The Dark Knight Rises", year: 2012, rating: "PG-13", studio: warner_bros }
+]
+
+movies.each do |movie|
+  Movie.create!(movie)
+end
+
+actors = [
+  { name: "Christian Bale" },
+  { name: "Michael Caine" },
+  { name: "Liam Neeson" },
+  { name: "Katie Holmes" },
+  { name: "Gary Oldman" },
+  { name: "Heath Ledger" },
+  { name: "Aaron Eckhart" },
+  { name: "Maggie Gyllenhaal" },
+  { name: "Tom Hardy" },
+  { name: "Joseph Gordon-Levitt" },
+  { name: "Anne Hathaway" }
+]
+
+actors.each do |actor|
+  Actor.create!(actor)
+end
+
+roles = [
+  { movie: Movie.find_by(title: "Batman Begins"), actor: Actor.find_by(name: "Christian Bale"), character_name: "Bruce Wayne" },
+  { movie: Movie.find_by(title: "Batman Begins"), actor: Actor.find_by(name: "Michael Caine"), character_name: "Alfred" },
+  { movie: Movie.find_by(title: "Batman Begins"), actor: Actor.find_by(name: "Liam Neeson"), character_name: "Ra's Al Ghul" },
+  { movie: Movie.find_by(title: "Batman Begins"), actor: Actor.find_by(name: "Katie Holmes"), character_name: "Rachel Dawes" },
+  { movie: Movie.find_by(title: "Batman Begins"), actor: Actor.find_by(name: "Gary Oldman"), character_name: "Commissioner Gordon" },
+  { movie: Movie.find_by(title: "The Dark Knight"), actor: Actor.find_by(name: "Christian Bale"), character_name: "Bruce Wayne" },
+  { movie: Movie.find_by(title: "The Dark Knight"), actor: Actor.find_by(name: "Heath Ledger"), character_name: "Joker" },
+  { movie: Movie.find_by(title: "The Dark Knight"), actor: Actor.find_by(name: "Aaron Eckhart"), character_name: "Harvey Dent" },
+  { movie: Movie.find_by(title: "The Dark Knight"), actor: Actor.find_by(name: "Michael Caine"), character_name: "Alfred" },
+  { movie: Movie.find_by(title: "The Dark Knight"), actor: Actor.find_by(name: "Maggie Gyllenhaal"), character_name: "Rachel Dawes" },
+  { movie: Movie.find_by(title: "The Dark Knight Rises"), actor: Actor.find_by(name: "Christian Bale"), character_name: "Bruce Wayne" },
+  { movie: Movie.find_by(title: "The Dark Knight Rises"), actor: Actor.find_by(name: "Gary Oldman"), character_name: "Commissioner Gordon" },
+  { movie: Movie.find_by(title: "The Dark Knight Rises"), actor: Actor.find_by(name: "Tom Hardy"), character_name: "Bane" },
+  { movie: Movie.find_by(title: "The Dark Knight Rises"), actor: Actor.find_by(name: "Joseph Gordon-Levitt"), character_name: "John Blake" },
+  { movie: Movie.find_by(title: "The Dark Knight Rises"), actor: Actor.find_by(name: "Anne Hathaway"), character_name: "Selina Kyle" }
+]
+
+roles.each do |role|
+  Role.create!(role)
+end
 
 # Prints a header for the movies output
 puts "Movies"
