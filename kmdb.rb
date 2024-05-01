@@ -164,4 +164,11 @@ puts "========"
 puts ""
 
 # Query the cast data and loop through the results to display the cast output for each movie.
-# TODO!
+movies = Movie.all
+movies.each do |movie|
+  roles = Role.where(movie_id: movie.id)
+  roles.each do |role|
+    actor = Actor.find(role.actor_id)
+    puts "#{movie.title.ljust(25)} #{actor.name.ljust(20)} #{role.character_name}"
+  end
+end
